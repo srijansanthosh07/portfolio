@@ -17,6 +17,7 @@ import {
   TechMarquee,
   TypingText,
 } from "@/components/motion-primitives";
+import { HackathonGrid } from "@/components/hackathon-grid";
 import { portfolio } from "@/data/portfolio";
 
 export default function Home() {
@@ -25,7 +26,9 @@ export default function Home() {
   const [cgpaStat, internshipStat] = home.stats;
   const stats = [
     {
-      value: portfolio.hackathons.length,
+      value: portfolio.hackathons.filter((event) =>
+        /prize|finalist/i.test(event.award),
+      ).length,
       decimals: 0,
       label: "Hackathon Podium Wins",
       description: "State & National Competitions",
@@ -375,29 +378,9 @@ export default function Home() {
         id="hackathons"
         className="scroll-mt-20 border-t border-white/5 px-5 py-24 sm:px-8"
       >
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-7xl">
           <SectionHeading title={site.sections.hackathons} />
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {portfolio.hackathons.map((event) => (
-              <article
-                key={event.event}
-                className="rounded-3xl border border-white/10 bg-white/[0.03] p-6"
-              >
-                <p className="font-mono text-xs text-accent-violet">
-                  {event.date}
-                </p>
-                <p className="mt-5 text-sm font-semibold text-accent-cyan">
-                  {event.award}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-foreground">
-                  {event.event}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-foreground/60">
-                  {event.description}
-                </p>
-              </article>
-            ))}
-          </div>
+          <HackathonGrid events={portfolio.hackathons} />
         </div>
       </section>
 

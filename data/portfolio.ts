@@ -57,6 +57,7 @@ export type PortfolioData = {
     event: string;
     description: string;
     date: string;
+    certificateImage?: string;
   }[];
   positions: {
     role: string;
@@ -350,6 +351,31 @@ export const portfolio: PortfolioData = {
       description:
         "National AI Innovation Challenge at Thiagarajar School of Management",
       date: "30 Sep 2026",
+    },
+    {
+      award: "Participation",
+      event: "IGNITRRON '26",
+      description:
+        "National-level techno management fest at KPR Institute of Engineering and Technology, Coimbatore.",
+      date: "18-19 Sep 2026",
+      certificateImage:
+        "/certificates/competitions/ignitrron-2026.jpeg",
+    },
+    {
+      award: "Participation",
+      event: "DataStorm 1.0 - Hack the Future",
+      description:
+        "Intra-college hackathon by the Data Alchemist Club at SRM TRP Engineering College, sponsored by Visionet.",
+      date: "26 Mar 2026",
+      certificateImage: "/certificates/competitions/datastorm-1-0.jpeg",
+    },
+    {
+      award: "Participation",
+      event: "CampusX Pitch-A-Thon 2026",
+      description:
+        "Startup pitch-a-thon at Jeppiaar Engineering College, focused on prototypes, mentorship and validation.",
+      date: "13 Mar 2026",
+      certificateImage: "/certificates/competitions/pitch-a-thon-2026.jpeg",
     },
   ],
   positions: [

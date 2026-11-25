@@ -1,5 +1,6 @@
-import { CalendarDays, Trophy } from "lucide-react";
+import { Trophy } from "lucide-react";
 import { Reveal } from "@/components/motion-primitives";
+import { HackathonGrid } from "@/components/hackathon-grid";
 import { portfolio } from "@/data/portfolio";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -42,41 +43,8 @@ export default function HackathonsPage() {
       </section>
 
       <section className="border-t border-white/5 px-5 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {hackathons.map((event, index) => (
-            <Reveal key={event.event} delay={index * 0.1}>
-              <article className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-violet/40 hover:bg-white/[0.05] hover:shadow-[0_0_35px_rgba(168,85,247,0.12)] sm:p-7">
-                <div
-                  aria-hidden="true"
-                  className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-accent-cyan/5 blur-3xl transition-colors group-hover:bg-accent-violet/10"
-                />
-                <div className="relative flex h-full flex-col">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-accent-cyan/20 bg-accent-cyan/5 text-accent-cyan">
-                      <Trophy aria-hidden="true" size={20} />
-                    </span>
-                    <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-foreground/60">
-                      <CalendarDays
-                        aria-hidden="true"
-                        className="text-accent-violet"
-                        size={14}
-                      />
-                      {event.date}
-                    </span>
-                  </div>
-                  <p className="mt-7 font-mono text-sm font-medium text-accent-violet">
-                    {event.award}
-                  </p>
-                  <h2 className="mt-2 text-xl font-semibold leading-snug text-foreground">
-                    {event.event}
-                  </h2>
-                  <p className="mt-4 flex-1 text-sm leading-7 text-foreground/60">
-                    {event.description}
-                  </p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+        <div className="mx-auto max-w-7xl">
+          <HackathonGrid events={hackathons} />
         </div>
       </section>
     </main>
