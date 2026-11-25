@@ -22,6 +22,38 @@ import { portfolio } from "@/data/portfolio";
 export default function Home() {
   const { personal, site } = portfolio;
   const { home } = site;
+  const [cgpaStat, internshipStat] = home.stats;
+  const stats = [
+    {
+      value: portfolio.hackathons.length,
+      decimals: 0,
+      label: "Hackathon Podium Wins",
+      description: "State & National Competitions",
+      suffix: "+",
+    },
+    {
+      value: portfolio.projects.length,
+      decimals: 0,
+      label: "Projects",
+      description: "Full-Stack, AI & Mobile Apps",
+      suffix: "+",
+    },
+    {
+      ...cgpaStat,
+      description: "B.Tech AI & DS",
+    },
+    {
+      ...internshipStat,
+      description: "Data Analytics Experience",
+    },
+    {
+      value: portfolio.certificates.length,
+      decimals: 0,
+      label: "Certifications",
+      description: "Internship, Courses & Competitions",
+      suffix: "+",
+    },
+  ];
 
   return (
     <main className="flex-1">
@@ -126,15 +158,22 @@ export default function Home() {
         aria-label={home.statsHeading}
         className="border-y border-white/5 bg-white/[0.02] px-5 py-8 sm:px-8"
       >
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4">
-          {home.stats.map((stat, index) => (
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 sm:gap-4 lg:grid-cols-5">
+          {stats.map((stat, index) => (
             <Reveal key={stat.label} delay={index * 0.08}>
               <div className="text-center">
                 <p className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                  <CountUp value={stat.value} decimals={stat.decimals} />
+                  <CountUp
+                    value={stat.value}
+                    decimals={stat.decimals}
+                    suffix={"suffix" in stat ? stat.suffix : undefined}
+                  />
                 </p>
                 <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground/50 sm:text-xs">
                   {stat.label}
+                </p>
+                <p className="mt-1 text-xs leading-5 text-foreground/45">
+                  {stat.description}
                 </p>
               </div>
             </Reveal>
@@ -415,30 +454,17 @@ export default function Home() {
       >
         <div className="mx-auto max-w-5xl">
           <SectionHeading title={site.sections.certifications} />
-          {portfolio.certifications.length > 0 ? (
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {portfolio.certifications.map((certification) => (
-                <article
-                  key={certification.name}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
-                >
-                  <h3 className="font-medium text-foreground">
-                    {certification.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-foreground/60">
-                    {certification.issuer}
-                  </p>
-                  <p className="mt-2 font-mono text-xs text-foreground/45">
-                    {certification.date}
-                  </p>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-7 text-sm text-foreground/55">
-              {site.labels.certificationEmpty}
-            </p>
-          )}
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-foreground/60">
+            Browse course completions, competition awards, and internship
+            certificates.
+          </p>
+          <Link
+            href="/certifications"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent-cyan transition-colors hover:text-accent-violet"
+          >
+            View all {portfolio.certificates.length} certificates
+            <ArrowUpRight aria-hidden="true" size={15} />
+          </Link>
         </div>
       </section>
 

@@ -15,6 +15,17 @@ export type PortfolioProject = {
   liveUrl: string | null;
 };
 
+export type CertificateCategory = "Internship" | "Course" | "Competition";
+
+export type PortfolioCertificate = {
+  name: string;
+  issuer: string;
+  date: string;
+  category: CertificateCategory;
+  file: string;
+  format: "image" | "pdf";
+};
+
 export type PortfolioData = {
   personal: {
     name: string;
@@ -59,11 +70,7 @@ export type PortfolioData = {
     }[];
     soft: string[];
   };
-  certifications: {
-    name: string;
-    issuer: string;
-    date: string;
-  }[];
+  certificates: PortfolioCertificate[];
   site: {
     logo: string;
     availabilityLabel: string;
@@ -384,7 +391,104 @@ export const portfolio: PortfolioData = {
     ],
     soft: ["Problem Solving", "Leadership", "Adaptability", "Teamwork"],
   },
-  certifications: [],
+  certificates: [
+    {
+      name: "Data Analytics Internship",
+      issuer: "KevellGuru",
+      date: "30 June 2026",
+      category: "Internship",
+      file: "/certificates/internship/kevellguru-data-analytics.jpeg",
+      format: "image",
+    },
+    {
+      name: "Power BI Data Modelling Basics",
+      issuer: "Simplilearn SkillUp (Microsoft course)",
+      date: "4 February 2026",
+      category: "Course",
+      file: "/certificates/courses/simplilearn-power-bi-data-modelling.jpeg",
+      format: "image",
+    },
+    {
+      name: "Introduction to AI and Vector Search",
+      issuer: "MongoDB",
+      date: "8 June 2025",
+      category: "Course",
+      file: "/certificates/courses/mongodb-introduction-ai-vector-search.jpeg",
+      format: "image",
+    },
+    {
+      name: "MongoDB CRUD Operations in Python",
+      issuer: "MongoDB",
+      date: "8 July 2025",
+      category: "Course",
+      file: "/certificates/courses/mongodb-crud-operations-python.jpeg",
+      format: "image",
+    },
+    {
+      name: "Machine Learning with TensorFlow",
+      issuer: "Infosys Springboard",
+      date: "27 January 2026",
+      category: "Course",
+      file: "/certificates/courses/infosys-machine-learning-tensorflow.pdf",
+      format: "pdf",
+    },
+    {
+      name: "Introduction to Machine Learning",
+      issuer: "Infosys Springboard",
+      date: "25 January 2026",
+      category: "Course",
+      file: "/certificates/courses/infosys-introduction-machine-learning.pdf",
+      format: "pdf",
+    },
+    {
+      name: "TSM TECHNOVA 2026 Grand Finalist",
+      issuer: "Thiagarajar School of Management",
+      date: "30 September 2026",
+      category: "Competition",
+      file: "/certificates/competitions/tsm-technova-2026.jpeg",
+      format: "image",
+    },
+    {
+      name: "Neural Forge '26 Hackathon - 1st Prize",
+      issuer: "SRM TRP Engineering College",
+      date: "22-23 October 2026",
+      category: "Competition",
+      file: "/certificates/competitions/neural-forge-2026.jpeg",
+      format: "image",
+    },
+    {
+      name: "DataStorm 1.0 Hackathon - Participation",
+      issuer: "SRM TRP Engineering College",
+      date: "26 March 2026",
+      category: "Competition",
+      file: "/certificates/competitions/datastorm-1-0.jpeg",
+      format: "image",
+    },
+    {
+      name: "Ignitrron '26 - Participation",
+      issuer: "KPR Institute of Engineering and Technology",
+      date: "18-19 September 2026",
+      category: "Competition",
+      file: "/certificates/competitions/ignitrron-2026.jpeg",
+      format: "image",
+    },
+    {
+      name: "Pitch-A-Thon 2026 - Participation",
+      issuer: "CampusX and Jeppiaar Engineering College",
+      date: "13 March 2026",
+      category: "Competition",
+      file: "/certificates/competitions/pitch-a-thon-2026.jpeg",
+      format: "image",
+    },
+    {
+      name: "SMARTATHON '26 - 3rd Prize",
+      issuer: "Dhanalakshmi Srinivasan University",
+      date: "9-10 September 2026",
+      category: "Competition",
+      file: "/certificates/competitions/smartathon-2026.jpeg",
+      format: "image",
+    },
+  ],
   site: {
     logo: "🎯",
     availabilityLabel: "Open to Internships",
@@ -408,7 +512,11 @@ export const portfolio: PortfolioData = {
         homeHref: "/#hackathons",
       },
       { label: "Skills", href: "/#skills" },
-      { label: "Certifications", href: "/#certifications" },
+      {
+        label: "Certifications",
+        href: "/certifications",
+        homeHref: "/#certifications",
+      },
       { label: "Resume", href: "/resume" },
       { label: "Contact", href: "/contact" },
     ],
@@ -457,8 +565,6 @@ export const portfolio: PortfolioData = {
         contactMe: "Contact Me",
       },
       stats: [
-        { value: 3, decimals: 0, label: "Hackathon Awards" },
-        { value: 3, decimals: 0, label: "Projects" },
         { value: 7.7, decimals: 1, label: "CGPA" },
         { value: 1, decimals: 0, label: "Internship" },
       ],

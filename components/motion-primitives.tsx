@@ -83,14 +83,16 @@ export function TypingText({
 export function CountUp({
   value,
   decimals = 0,
+  suffix = "",
 }: {
   value: number;
   decimals?: number;
+  suffix?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
   const prefersReducedMotion = usePrefersReducedMotion();
-  const count = useMotionValue(0);
+  const count = useMotionValue(value);
   const display = useTransform(count, (current) => current.toFixed(decimals));
 
   useEffect(() => {
@@ -103,6 +105,7 @@ export function CountUp({
       return;
     }
 
+    count.set(0);
     const controls = animate(count, value, {
       duration: 1.8,
       ease: "easeOut",
@@ -114,6 +117,7 @@ export function CountUp({
   return (
     <span ref={ref}>
       <motion.span>{display}</motion.span>
+      {suffix}
     </span>
   );
 }

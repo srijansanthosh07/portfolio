@@ -104,6 +104,8 @@ export function SiteNavbar() {
                   pathname.startsWith("/projects")) ||
                 (item.href === "/hackathons" &&
                   pathname.startsWith("/hackathons")) ||
+                (item.href === "/certifications" &&
+                  pathname.startsWith("/certifications")) ||
                 (item.href === "/resume" &&
                   pathname.startsWith("/resume")) ||
                 (item.href === "/contact" &&
@@ -179,6 +181,8 @@ export function SiteNavbar() {
                       pathname.startsWith("/projects")) ||
                     (item.href === "/hackathons" &&
                       pathname.startsWith("/hackathons")) ||
+                    (item.href === "/certifications" &&
+                      pathname.startsWith("/certifications")) ||
                     (item.href === "/resume" &&
                       pathname.startsWith("/resume")) ||
                     (item.href === "/contact" &&
