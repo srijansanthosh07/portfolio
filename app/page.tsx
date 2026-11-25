@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -18,12 +20,19 @@ import {
   TypingText,
 } from "@/components/motion-primitives";
 import { HackathonGrid } from "@/components/hackathon-grid";
+import { ProjectScreenshot } from "@/components/project-screenshot";
 import { portfolio } from "@/data/portfolio";
 
 export default function Home() {
   const { personal, site } = portfolio;
   const { home } = site;
   const [cgpaStat, internshipStat] = home.stats;
+  const featuredProjects = portfolio.projects.map((project) => ({
+    ...project,
+    screenshotAvailable: existsSync(
+      join(process.cwd(), "public", project.screenshot.slice(1)),
+    ),
+  }));
   const stats = [
     {
       value: portfolio.hackathons.filter((event) =>
@@ -285,18 +294,22 @@ export default function Home() {
             </p>
           </Reveal>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {portfolio.projects.map((project, index) => (
-              <Reveal key={project.name} delay={index * 0.1}>
+            {featuredProjects.map((project, index) => (
+              <Reveal
+                key={project.name}
+                delay={index * 0.1}
+                initialVisible
+              >
                 <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] transition-colors hover:border-accent-cyan/40">
-                  <div className="relative flex aspect-[1.7/1] items-center justify-center overflow-hidden border-b border-white/5 bg-gradient-to-br from-accent-cyan/[0.08] via-background to-accent-violet/[0.12]">
-                    <div
-                      aria-hidden="true"
-                      className="absolute h-36 w-36 rounded-full bg-accent-violet/15 blur-3xl transition-colors group-hover:bg-accent-cyan/20"
+                  <div className="relative">
+                    <ProjectScreenshot
+                      src={project.screenshot}
+                      alt={`${project.name} screenshot`}
+                      available={project.screenshotAvailable}
+                      placeholder={site.projects.labels.screenshotUnavailable}
+                      className="aspect-video border-b border-white/5"
                     />
-                    <span className="relative font-mono text-6xl font-semibold text-foreground/80">
-                      {project.name.slice(0, 1)}
-                    </span>
-                    <span className="absolute right-5 top-5 font-mono text-xs text-foreground/35">
+                    <span className="absolute right-5 top-5 font-mono text-xs text-foreground/80">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -329,15 +342,15 @@ export default function Home() {
                         <ArrowUpRight aria-hidden="true" size={15} />
                       </Link>
                       {project.githubUrl && (
-                      <a
-                        className="inline-flex w-fit items-center gap-2 text-sm text-foreground/60 transition-colors hover:text-accent-cyan"
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {site.labels.github}
-                        <ArrowUpRight aria-hidden="true" size={15} />
-                      </a>
+                        <a
+                          className="inline-flex w-fit items-center gap-2 text-sm text-foreground/60 transition-colors hover:text-accent-cyan"
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {site.labels.github}
+                          <ArrowUpRight aria-hidden="true" size={15} />
+                        </a>
                       )}
                     </div>
                   </div>

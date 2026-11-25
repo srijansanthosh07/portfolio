@@ -68,7 +68,7 @@ async function ProjectCaseStudyContent({ params }: ProjectPageProps) {
   return (
     <main className="flex-1 px-5 pb-24 pt-16 sm:px-8 sm:pt-24">
       <div className="mx-auto max-w-5xl">
-        <Reveal>
+        <Reveal initialVisible>
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-sm text-foreground/60 transition-colors hover:text-accent-cyan"
@@ -90,7 +90,7 @@ async function ProjectCaseStudyContent({ params }: ProjectPageProps) {
           </p>
         </Reveal>
 
-        <Reveal className="mt-10" delay={0.1}>
+        <Reveal className="mt-10" delay={0.1} initialVisible>
           <ProjectScreenshot
             src={project.screenshot}
             alt={`${project.name} screenshot`}
@@ -101,7 +101,7 @@ async function ProjectCaseStudyContent({ params }: ProjectPageProps) {
         </Reveal>
 
         <section className="mt-16 grid gap-10 md:grid-cols-2">
-          <Reveal>
+          <Reveal initialVisible>
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-cyan">
               {labels.overview}
             </h2>
@@ -109,7 +109,7 @@ async function ProjectCaseStudyContent({ params }: ProjectPageProps) {
               {project.description}
             </p>
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} initialVisible>
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-violet">
               {labels.problem}
             </h2>
@@ -117,7 +117,7 @@ async function ProjectCaseStudyContent({ params }: ProjectPageProps) {
               {project.problem}
             </p>
           </Reveal>
-          <Reveal>
+          <Reveal initialVisible>
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-violet">
               {labels.solution}
             </h2>
@@ -125,7 +125,7 @@ async function ProjectCaseStudyContent({ params }: ProjectPageProps) {
               {project.solution}
             </p>
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} initialVisible>
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-cyan">
               {labels.keyFeatures}
             </h2>
@@ -146,7 +146,7 @@ async function ProjectCaseStudyContent({ params }: ProjectPageProps) {
           </Reveal>
         </section>
 
-        <Reveal className="mt-16">
+        <Reveal className="mt-16" initialVisible>
           <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-cyan">
             {labels.techStack}
           </h2>
@@ -163,7 +163,7 @@ async function ProjectCaseStudyContent({ params }: ProjectPageProps) {
         </Reveal>
 
         {(project.githubUrl || project.liveUrl) && (
-          <Reveal className="mt-12 flex flex-wrap gap-3">
+          <Reveal className="mt-12 flex flex-wrap gap-3" initialVisible>
             {project.githubUrl && (
               <a
                 href={project.githubUrl}

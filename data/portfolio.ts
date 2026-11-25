@@ -324,6 +324,27 @@ export const portfolio: PortfolioData = {
       githubUrl: null,
       liveUrl: null,
     },
+    {
+      slug: "foodonrescue",
+      name: "FoodOnRescue",
+      title: "FoodOnRescue - Surplus Food Donation Platform",
+      category: "Full-Stack",
+      description:
+        "A platform that connects food donors with people and organizations in need to reduce food waste. Users can list surplus food and request or claim it, with status tracking for each donation.",
+      screenshot: "/images/projects/foodonrescue.png",
+      problem:
+        "Surplus food can go to waste when donors are not connected with people and organizations in need.",
+      solution:
+        "Connects food donors with people and organizations in need, allowing users to list surplus food, request or claim it, and track each donation's status.",
+      features: [
+        "Listing surplus food",
+        "Requesting or claiming food",
+        "Status tracking of each donation",
+      ],
+      stack: ["TypeScript", "Express.js", "Supabase", "PostgreSQL"],
+      githubUrl: "https://github.com/srijansanthosh07/foodonrescue",
+      liveUrl: null,
+    },
   ],
   internship: {
     role: "Data Analytics Intern",

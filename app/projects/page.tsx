@@ -24,7 +24,7 @@ export default function ProjectsPage() {
   return (
     <main className="flex-1 px-5 pb-24 pt-20 sm:px-8 sm:pt-28">
       <div className="mx-auto max-w-7xl">
-        <Reveal>
+        <Reveal initialVisible>
           <p className="font-mono text-sm text-accent-violet">
             {portfolio.personal.title}
           </p>

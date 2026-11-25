@@ -78,7 +78,7 @@ export function ProjectGallery({
         <motion.div
           key={activeFilter}
           className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3"
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           exit={prefersReducedMotion ? undefined : { opacity: 0, y: -8 }}
           transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
@@ -130,7 +130,7 @@ function ProjectCard({
   return (
     <motion.article
       className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03]"
-      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={
         reduceMotion
@@ -165,7 +165,7 @@ function ProjectCard({
           alt={`${project.name} screenshot`}
           available={project.screenshotAvailable}
           placeholder={content.labels.screenshotUnavailable}
-          className="aspect-[16/10]"
+          className="aspect-video"
         />
         <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-background/80 px-3 py-1 font-mono text-[11px] text-accent-cyan backdrop-blur">
           {project.category}

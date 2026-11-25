@@ -15,10 +15,12 @@ export function Reveal({
   children,
   className,
   delay = 0,
+  initialVisible = false,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  initialVisible?: boolean;
 }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -26,7 +28,11 @@ export function Reveal({
     <motion.div
       className={className}
       data-reveal=""
-      initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+      initial={
+        prefersReducedMotion || initialVisible
+          ? false
+          : { opacity: 0, y: 24 }
+      }
       whileInView={
         prefersReducedMotion ? undefined : { opacity: 1, y: 0 }
       }
